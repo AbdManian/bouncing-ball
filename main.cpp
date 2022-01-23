@@ -41,6 +41,18 @@ int main(void)
     		ball_speed_x = ball_speed_x * -1;
     	}
 
+    	if (ball_y<ball_radius)
+    	{
+    		ball_y = ball_radius;
+    		ball_speed_y = ball_speed_y * -1;
+    	}
+
+    	if (ball_x<ball_radius)
+    	{
+    		ball_x = ball_radius;
+    		ball_speed_x = ball_speed_x * -1;
+    	}
+
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
