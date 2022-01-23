@@ -1,6 +1,5 @@
 /**
  * Bouncing Ball!
- *
  */
 #include "raylib.h"
 
@@ -29,6 +28,18 @@ int main(void)
     	ball_x = ball_x + ball_speed_x;
     	ball_y = ball_y + ball_speed_y;
 
+    	if (ball_y>(screen_height-ball_radius))
+    	{
+    		ball_y = screen_height - ball_radius;
+    		ball_speed_y = ball_speed_y * -1 ;
+    	}
+
+    	if (ball_x>(screen_width-ball_radius))
+    	{
+    		ball_x = screen_width - ball_radius;
+    		ball_speed_x = ball_speed_x * -1;
+    	}
+
     	if (ball_y<ball_radius)
     	{
     		ball_y = ball_radius;
@@ -46,9 +57,6 @@ int main(void)
         BeginDrawing();
 
             ClearBackground(RAYWHITE);
-
-//            DrawRectangle(0, 0, screen_width, screen_height, BLACK);
-//            DrawRectangle(10, 10, screen_width-20, screen_height-20, RAYWHITE);
 
             DrawCircle(ball_x, ball_y, ball_radius, MAROON);
 
