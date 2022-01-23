@@ -14,8 +14,8 @@ int main(void)
     int ball_x = screen_width / 3;
     int ball_y = screen_height / 3;
     float ball_radius = 10;
-    int ball_speed_x = 4;
-    int ball_speed_y = 4;
+    int ball_speed_x = -4;
+    int ball_speed_y = -4;
 
     InitWindow(screen_width, screen_height, "Bouncing Ball!");
 
