@@ -10,11 +10,17 @@ int main(void)
     const int screen_width = 800;
     const int screen_height = 600;
 
-    int ball_x = screen_width / 3;
-    int ball_y = screen_height / 3;
-    float ball_radius = 10;
-    int ball_speed_x = -4;
-    int ball_speed_y = -4;
+    int ball_r_x = screen_width / 3;
+    int ball_r_y = screen_height / 3;
+    float ball_r_radius = 10;
+    int ball_r_speed_x = -4;
+    int ball_r_speed_y = -4;
+
+    int ball_b_x = screen_width / 3;
+    int ball_b_y = screen_height / 3;
+    float ball_b_radius = 14;
+    int ball_b_speed_x = 4;
+    int ball_b_speed_y = -4;
 
     InitWindow(screen_width, screen_height, "Bouncing Ball!");
 
@@ -25,31 +31,59 @@ int main(void)
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
 
-    	ball_x = ball_x + ball_speed_x;
-    	ball_y = ball_y + ball_speed_y;
+    	ball_r_x = ball_r_x + ball_r_speed_x;
+    	ball_r_y = ball_r_y + ball_r_speed_y;
 
-    	if (ball_y>(screen_height-ball_radius))
+    	if (ball_r_y>(screen_height-ball_r_radius))
     	{
-    		ball_y = screen_height - ball_radius;
-    		ball_speed_y = ball_speed_y * -1 ;
+    		ball_r_y = screen_height - ball_r_radius;
+    		ball_r_speed_y = ball_r_speed_y * -1 ;
     	}
 
-    	if (ball_x>(screen_width-ball_radius))
+    	if (ball_r_x>(screen_width-ball_r_radius))
     	{
-    		ball_x = screen_width - ball_radius;
-    		ball_speed_x = ball_speed_x * -1;
+    		ball_r_x = screen_width - ball_r_radius;
+    		ball_r_speed_x = ball_r_speed_x * -1;
     	}
 
-    	if (ball_y<ball_radius)
+    	if (ball_r_y<ball_r_radius)
     	{
-    		ball_y = ball_radius;
-    		ball_speed_y = ball_speed_y * -1;
+    		ball_r_y = ball_r_radius;
+    		ball_r_speed_y = ball_r_speed_y * -1;
     	}
 
-    	if (ball_x<ball_radius)
+    	if (ball_r_x<ball_r_radius)
     	{
-    		ball_x = ball_radius;
-    		ball_speed_x = ball_speed_x * -1;
+    		ball_r_x = ball_r_radius;
+    		ball_r_speed_x = ball_r_speed_x * -1;
+    	}
+
+
+    	ball_b_x = ball_b_x + ball_b_speed_x;
+    	ball_b_y = ball_b_y + ball_b_speed_y;
+
+    	if (ball_b_y>(screen_height-ball_b_radius))
+    	{
+    		ball_b_y = screen_height - ball_b_radius;
+    		ball_b_speed_y = ball_b_speed_y * -1 ;
+    	}
+
+    	if (ball_b_x>(screen_width-ball_b_radius))
+    	{
+    		ball_b_x = screen_width - ball_b_radius;
+    		ball_b_speed_x = ball_b_speed_x * -1;
+    	}
+
+    	if (ball_b_y<ball_b_radius)
+    	{
+    		ball_b_y = ball_b_radius;
+    		ball_b_speed_y = ball_b_speed_y * -1;
+    	}
+
+    	if (ball_b_x<ball_b_radius)
+    	{
+    		ball_b_x = ball_b_radius;
+    		ball_b_speed_x = ball_b_speed_x * -1;
     	}
 
         // Draw
@@ -58,7 +92,8 @@ int main(void)
 
             ClearBackground(RAYWHITE);
 
-            DrawCircle(ball_x, ball_y, ball_radius, MAROON);
+            DrawCircle(ball_r_x, ball_r_y, ball_r_radius, RED);
+            DrawCircle(ball_b_x, ball_b_y, ball_b_radius, BLUE);
 
             DrawFPS(10, 10);
 
