@@ -29,18 +29,6 @@ int main(void)
     	ball_x = ball_x + ball_speed_x;
     	ball_y = ball_y + ball_speed_y;
 
-    	if (ball_y>(screen_height-ball_radius))
-    	{
-    		ball_y = screen_height - ball_radius;
-    		ball_speed_y = ball_speed_y * -1 ;
-    	}
-
-    	if (ball_x>(screen_width-ball_radius))
-    	{
-    		ball_x = screen_width - ball_radius;
-    		ball_speed_x = ball_speed_x * -1;
-    	}
-
     	if (ball_y<ball_radius)
     	{
     		ball_y = ball_radius;
