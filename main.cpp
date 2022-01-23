@@ -3,24 +3,28 @@
  */
 #include "raylib.h"
 
+struct Ball
+{
+	int x;
+	int y;
+	float radius;
+	int speed_x;
+	int speed_y;
+	Color color;
+};
+
+
 int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
     const int screen_width = 800;
     const int screen_height = 600;
+    const int start_x = screen_width / 3;
+    const int start_y = screen_height / 3;
 
-    int ball_r_x = screen_width / 3;
-    int ball_r_y = screen_height / 3;
-    float ball_r_radius = 10;
-    int ball_r_speed_x = -4;
-    int ball_r_speed_y = -4;
-
-    int ball_b_x = screen_width / 3;
-    int ball_b_y = screen_height / 3;
-    float ball_b_radius = 14;
-    int ball_b_speed_x = 4;
-    int ball_b_speed_y = -4;
+    Ball ball_r {start_x, start_y, 10.0f, -4, -4, RED };
+    Ball ball_b {start_x, start_y, 15.0f, -4,  4, BLUE};
 
     InitWindow(screen_width, screen_height, "Bouncing Ball!");
 
@@ -31,59 +35,59 @@ int main(void)
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
 
-    	ball_r_x = ball_r_x + ball_r_speed_x;
-    	ball_r_y = ball_r_y + ball_r_speed_y;
+    	ball_r.x = ball_r.x + ball_r.speed_x;
+    	ball_r.y = ball_r.y + ball_r.speed_y;
 
-    	if (ball_r_y>(screen_height-ball_r_radius))
+    	if (ball_r.y>(screen_height-ball_r.radius))
     	{
-    		ball_r_y = screen_height - ball_r_radius;
-    		ball_r_speed_y = ball_r_speed_y * -1 ;
+    		ball_r.y = screen_height - ball_r.radius;
+    		ball_r.speed_y = ball_r.speed_y * -1 ;
     	}
 
-    	if (ball_r_x>(screen_width-ball_r_radius))
+    	if (ball_r.x>(screen_width-ball_r.radius))
     	{
-    		ball_r_x = screen_width - ball_r_radius;
-    		ball_r_speed_x = ball_r_speed_x * -1;
+    		ball_r.x = screen_width - ball_r.radius;
+    		ball_r.speed_x = ball_r.speed_x * -1;
     	}
 
-    	if (ball_r_y<ball_r_radius)
+    	if (ball_r.y<ball_r.radius)
     	{
-    		ball_r_y = ball_r_radius;
-    		ball_r_speed_y = ball_r_speed_y * -1;
+    		ball_r.y = ball_r.radius;
+    		ball_r.speed_y = ball_r.speed_y * -1;
     	}
 
-    	if (ball_r_x<ball_r_radius)
+    	if (ball_r.x<ball_r.radius)
     	{
-    		ball_r_x = ball_r_radius;
-    		ball_r_speed_x = ball_r_speed_x * -1;
+    		ball_r.x = ball_r.radius;
+    		ball_r.speed_x = ball_r.speed_x * -1;
     	}
 
 
-    	ball_b_x = ball_b_x + ball_b_speed_x;
-    	ball_b_y = ball_b_y + ball_b_speed_y;
+    	ball_b.x = ball_b.x + ball_b.speed_x;
+    	ball_b.y = ball_b.y + ball_b.speed_y;
 
-    	if (ball_b_y>(screen_height-ball_b_radius))
+    	if (ball_b.y>(screen_height-ball_b.radius))
     	{
-    		ball_b_y = screen_height - ball_b_radius;
-    		ball_b_speed_y = ball_b_speed_y * -1 ;
+    		ball_b.y = screen_height - ball_b.radius;
+    		ball_b.speed_y = ball_b.speed_y * -1 ;
     	}
 
-    	if (ball_b_x>(screen_width-ball_b_radius))
+    	if (ball_b.x>(screen_width-ball_b.radius))
     	{
-    		ball_b_x = screen_width - ball_b_radius;
-    		ball_b_speed_x = ball_b_speed_x * -1;
+    		ball_b.x = screen_width - ball_b.radius;
+    		ball_b.speed_x = ball_b.speed_x * -1;
     	}
 
-    	if (ball_b_y<ball_b_radius)
+    	if (ball_b.y<ball_b.radius)
     	{
-    		ball_b_y = ball_b_radius;
-    		ball_b_speed_y = ball_b_speed_y * -1;
+    		ball_b.y = ball_b.radius;
+    		ball_b.speed_y = ball_b.speed_y * -1;
     	}
 
-    	if (ball_b_x<ball_b_radius)
+    	if (ball_b.x<ball_b.radius)
     	{
-    		ball_b_x = ball_b_radius;
-    		ball_b_speed_x = ball_b_speed_x * -1;
+    		ball_b.x = ball_b.radius;
+    		ball_b.speed_x = ball_b.speed_x * -1;
     	}
 
         // Draw
@@ -92,8 +96,8 @@ int main(void)
 
             ClearBackground(RAYWHITE);
 
-            DrawCircle(ball_r_x, ball_r_y, ball_r_radius, RED);
-            DrawCircle(ball_b_x, ball_b_y, ball_b_radius, BLUE);
+            DrawCircle(ball_r.x, ball_r.y, ball_r.radius, ball_r.color);
+            DrawCircle(ball_b.x, ball_b.y, ball_b.radius, ball_b.color);
 
             DrawFPS(10, 10);
 
